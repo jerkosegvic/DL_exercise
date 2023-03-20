@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 def fcann2_train(X, Y_):
     C = np.max(Y_) + 1
     K = 5
-    param_delta = 0.01
-    param_niter = 10000
+    param_delta = 0.025
+    param_niter = 100000
     param_lambda = 0.001
     N, D = X.shape
 
@@ -28,7 +28,7 @@ def fcann2_train(X, Y_):
         
         logprobs = np.log(probs)
 
-        loss = -np.sum(logprobs[np.arange(X.shape[0]), Y_]) / X.shape[0] 
+        loss = -np.sum(logprobs[np.arange(X.shape[0]), Y_]) / X.shape[0]
         if i % 10 == 0:
             print("iteration {}: loss {}".format(i, loss))
 
@@ -73,6 +73,7 @@ def fcann2_decfun(w1, b1, w2, b2):
     return classify
 
 if __name__ == "__main__":
+    #np.random.seed(100)
     # load the data
     X, Y_ = data.sample_gmm_2d(6, 2, 10)
     # train the model
